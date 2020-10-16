@@ -2,11 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include "course.h"
-#include "courseNode.h"
-#include "courseLinkedList.h"
-#include "department.h"
-#include "degree.h"
-#include "degreeArrayList.h"
 #include "courseArrayList.h"
 
 CourseArrayList *createCourseArrayList()
@@ -24,7 +19,7 @@ CourseArrayList *createCourseArrayList()
 void resizeCourseArrayList(CourseArrayList *arr)
 {
     arr->list = (Course **)realloc(arr->list, arr->size * 2 * sizeof(Course *));
-    for (int i = 0; i < 20; i++)
+    for (int i = 0; i < arr->size; i++)
     {
         arr->list[i] = (Course *)malloc(sizeof(Course));
     }
@@ -46,4 +41,22 @@ void insertCourseArrayList(CourseArrayList *arr, Course *c)
         resizeCourseArrayList(arr);
     arr->list[arr->size + 1] = c;
     arr->size++;
+}
+
+void printCourseArrayList(CourseArrayList *arr)
+{
+    if (arr == NULL)
+    {
+        printf("CRL is Null");
+        return;
+    }
+    if (arr->list == NULL && arr->size == 0)
+    {
+        printf("Something is NULL\n");
+        return;
+    }
+    for (int i = 0; i < arr->size; i++)
+    {
+        printf("%s", arr->list[i]->title);
+    }
 }

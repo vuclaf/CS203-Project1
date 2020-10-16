@@ -1,31 +1,47 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "course.h"
-#include "courseNode.h"
 #include "courseLinkedList.h"
-#include "department.h"
+#include "degreeReq.h"
 #include "degree.h"
-#include "degreeArrayList.h"
 
 Degree *createDeg(char *name)
 {
     Degree *deg = (Degree *)malloc(sizeof(Degree));
     deg->name = name;
     deg->dept = NULL;
-    deg->req = createCourseLinkedList();
+    deg->req = createDegreeReq();
 }
 
-void addCourseDeg(Degree *deg, Course *course)
+void addCourseDeg(Degree *deg, char *newCourse, char * or)
 {
-    insertCourseLinkedList(deg->req, course);
+    int search = searchCourseDegreeReq(deg->req, or);
+    printf("%d\n", search);
+    DegreeReq *degreeReq = deg->req;
+    if (degreeReq == NULL)
+    {
+        printf("Something is NULL\n");
+        return;
+    }
+    if (search != -1)
+    {
+        insertCourseLinkedList(degreeReq->list[search], newCourse);
+    }
+    else
+    {
+        CourseLinkedList *cll = createCourseLinkedList();
+        insertCourseLinkedList(cll, newCourse);
+        insertDegreeReq(deg->req, cll);
+    }
 }
 
-void setDeptDeg(Degree *deg, Department *dept)
+void setDeptDeg(Degree *deg, char *dept)
 {
     deg->dept = dept;
 }
 
 void printDeg(Degree *deg)
 {
+    printf("%s\n%s\n", deg->name, deg->dept);
+    printDegreeReq(deg->req);
 }

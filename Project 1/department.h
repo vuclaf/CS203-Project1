@@ -1,5 +1,7 @@
 #ifndef DEPT_H_
 #define DEPT_H_
+#include "course.h"
+#include "degree.h"
 
 typedef struct Department
 {

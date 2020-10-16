@@ -2,12 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 #include "course.h"
-#include "courseNode.h"
-#include "courseLinkedList.h"
-#include "department.h"
 #include "degree.h"
 #include "degreeArrayList.h"
 #include "courseArrayList.h"
+#include "department.h"
 
 Department *createDept(char *name)
 {
@@ -29,4 +27,5 @@ void addDegDept(Department *dept, Degree *deg)
 
 void printDept(Department *dept)
 {
+    printf("%s\n", dept->name);
 }

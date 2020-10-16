@@ -8,9 +8,8 @@ typedef struct CourseArrayList
 } CourseArrayList;
 
 extern CourseArrayList *createCourseArrayList();
-
 extern void resizeCourseArrayList(CourseArrayList *list);
-
 extern void insertCourseArrayList(CourseArrayList *list, Course *deg);
+extern void printCourseArrayList(CourseArrayList *list);
 
 #endif

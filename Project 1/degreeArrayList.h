@@ -8,9 +8,8 @@ typedef struct DegreeArrayList
 } DegreeArrayList;
 
 extern DegreeArrayList *createDegreeArrayList();
-
 extern void resizeDegreeArrayList(DegreeArrayList *list);
-
 extern void insertDegreeArrayList(DegreeArrayList *list, Degree *deg);
+extern void printDegreeArrayList(DegreeArrayList *list);
 
 #endif

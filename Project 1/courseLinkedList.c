@@ -1,12 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "course.h"
 #include "courseNode.h"
 #include "courseLinkedList.h"
-#include "department.h"
-#include "degree.h"
-#include "degreeArrayList.h"
 
 CourseLinkedList *createCourseLinkedList()
 {
@@ -18,7 +14,7 @@ void printCourseLinkedList(CourseLinkedList *list)
 {
     if (list->first == NULL)
     {
-        printf("Empty List");
+        printf("Empty CLL List in Print\n");
         return;
     }
     CourseNode *first = list->first;
@@ -26,23 +22,41 @@ void printCourseLinkedList(CourseLinkedList *list)
     while (first->next != NULL)
     {
         first = first->next;
+        printf("OR ");
         printNode(first);
     }
 }
 
-void insertCourseLinkedList(CourseLinkedList *list, Course *newData)
+void insertCourseLinkedList(CourseLinkedList *list, char *newData)
 {
     if (list->first == NULL)
     {
-        printf("Empty List");
+        CourseNode *cn = createNode(newData, NULL, NULL);
+        list->first = cn;
         return;
     }
-    CourseNode *first = list->first;
-    while (first->next != NULL)
+    CourseNode *curr = list->first;
+    while (curr->next != NULL)
     {
-        first = first->next;
+        curr = curr->next;
     }
-    CourseNode *new = (CourseNode *)malloc(sizeof(CourseNode));
-    initNodeP(new, newData, first, NULL);
-    first->next = new;
+    CourseNode *new = createNode(newData, curr, NULL);
+    curr->next = new;
+}
+
+int searchCourseLinkedList(CourseLinkedList *list, char *tar)
+{
+    if (list == NULL || list->first == NULL)
+        return -1;
+    CourseNode *curr = list->first;
+    if (strcmp(curr->data, tar) == 0)
+        return 1;
+    while (curr->next != NULL)
+    {
+        if (strcmp(curr->data, tar) == 0)
+            return 1;
+        else
+            curr = curr->next;
+    }
+    return 0;
 }

@@ -1,14 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "course.h"
 #include "courseNode.h"
-#include "courseLinkedList.h"
-#include "department.h"
-#include "degree.h"
-#include "degreeArrayList.h"
 
-CourseNode *createNode(Course *d, CourseNode *p, CourseNode *nx)
+CourseNode *createNode(char *d, CourseNode *p, CourseNode *nx)
 {
     CourseNode *np = (CourseNode *)malloc(sizeof(CourseNode));
     np->data = d;
@@ -20,10 +15,10 @@ CourseNode *createNode(Course *d, CourseNode *p, CourseNode *nx)
         np->next = nx;
     else
         np->next = NULL;
-    return;
+    return np;
 }
 
 void printNode(CourseNode *n)
 {
-    printCourse(n);
+    printf("%s\n", n->data);
 }
